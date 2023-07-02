@@ -1,0 +1,351 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(235, 21%, 11%);
+  height: 100%;
+}
+
+body.light {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.App {
+  font-family: "Josefin Sans", sans-serif;
+  height: 100%;
+
+  background-color: hsl(235, 21%, 11%);
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.App.light {
+  background-color: hsl(0, 0%, 98%);
+}
+
+header {
+  position: relative;
+  height: 350px;
+  width: 100%;
+  background-image: url("./images/bg-desktop-dark.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header.light {
+  background-image: url("./images/bg-desktop-light.jpg");
+}
+
+main {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  /* gap: 1.5rem; */
+  width: 50rem;
+  height: 90vh;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  color: hsl(0, 0%, 98%);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.mode-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.mode-btn:hover {
+  cursor: pointer;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 7px;
+  transition: all 0.2s;
+  margin-top: 2.5rem;
+  padding: 1.25rem;
+}
+
+.search-field.light {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.search-field.light input::placeholder,
+.search-field.light input {
+  color: hsl(236, 9%, 61%);
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  color: hsl(234, 39%, 85%);
+  font-size: 20px;
+}
+
+input.typing::placeholder {
+  color: hsl(234, 39%, 85%);
+}
+
+input.typing.light::placeholder {
+  color: hsl(237, 14%, 26%);
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: hsl(234, 11%, 52%);
+}
+
+.circle-btn {
+  position: relative;
+  z-index: 5;
+  background-color: transparent;
+  border: solid 1px hsl(234, 11%, 52%);
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+}
+
+.circle-btn::before {
+  transition: all 0.2s;
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: 0;
+  content: "";
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle-btn.light::before {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.circle-btn:hover {
+  cursor: pointer;
+  border: solid 1px transparent;
+  background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)),
+    radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.circle-btn.completed {
+  border-width: 0px;
+  background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)),
+    radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.circle-btn.completed::before {
+  background: transparent;
+}
+
+.list-container {
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: -1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  box-shadow: -15px 0px 30px -15px hsl(235, 21%, 11%),
+    15px 0px 30px -15px hsl(235, 21%, 11%);
+  width: 100%;
+  height: 400px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: hsl(235, 24%, 19%);
+  transition: all 0.2s;
+}
+
+.list-container.light {
+  box-shadow: -15px 0px 50px -15px hsl(233, 11%, 84%),
+    15px 0px 50px -15px hsl(233, 11%, 84%);
+
+  background-color: hsl(0, 0%, 98%);
+}
+
+.list-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sort-items {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  background-color: hsl(235, 24%, 19%);
+  box-shadow: 0px 15px 30px -15px hsl(235, 21%, 11%);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: 1.25rem 2rem;
+  transition: all 0.2s;
+}
+
+.sort-items.light {
+  box-shadow: 0px 15px 50px -15px hsl(233, 11%, 84%);
+  background-color: hsl(0, 0%, 98%);
+}
+
+.sort-items.light .sort-button,
+.sort-items.light .items-amount {
+  color: hsl(236, 9%, 61%);
+}
+
+.sort-items.light .sort-button:hover {
+  color: hsl(235, 19%, 35%);
+}
+
+.sort-items.light + ul .sort-button:hover {
+  color: hsl(235, 19%, 35%);
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  width: fit-content;
+  transform: translateY(-43px);
+  gap: 1.5rem;
+  margin: 0 auto;
+  background-color: hsl(235, 24%, 19%);
+  transition: all 0.2s;
+  justify-content: center;
+}
+
+.sort-items.light + ul {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.sort-items.light + ul .sort-button {
+  color: hsl(236, 9%, 61%);
+}
+
+.items-amount {
+  color: hsl(233, 14%, 35%);
+  font-size: 1.25rem;
+}
+
+.sort-button {
+  background-color: transparent;
+  border: none;
+  color: hsl(233, 14%, 35%);
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+.sort-button.active {
+  color: hsl(220, 98%, 61%);
+}
+
+.sort-items.light + ul .sort-button.active {
+  color: hsl(220, 98%, 61%);
+}
+
+.sort-button:hover {
+  cursor: pointer;
+  color: hsl(236, 33%, 92%);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-bottom: 1px solid hsl(233, 14%, 35%);
+  transition: all 0.2s;
+}
+
+.item:hover {
+  cursor: grab;
+}
+
+.item.light {
+  border-bottom: 1px solid hsl(236, 33%, 92%);
+}
+
+.item-container {
+  /* width: 0%; */
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.remove-btn {
+  background-image: url("./images/icon-cross.svg");
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: hsl(233, 14%, 35%);
+}
+
+.remove-btn:hover {
+  cursor: pointer;
+}
+
+.circle-btn.light + .item-description {
+  color: hsl(235, 19%, 35%);
+}
+
+.circle-btn.completed.light + .item-description {
+  color: hsl(233, 11%, 84%);
+}
+
+.circle-btn.completed + .item-description {
+  text-decoration: line-through;
+  color: hsl(233, 14%, 35%);
+}
+
+.item-description {
+  color: hsl(234, 39%, 85%);
+  font-size: 1.25rem;
+  /* width: 10%; */
+  width: 40rem;
+  overflow: hidden;
+}
+
+.drag {
+  color: hsl(235, 16%, 43%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+}
+
+footer {
+  font-size: 0.75rem;
+  position: absolute;
+  color: hsl(0, 0%, 98%);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+footer.light {
+  color: hsl(233, 14%, 35%);
+}
+
+footer a {
+  color: hsl(220, 98%, 61%);
+}
